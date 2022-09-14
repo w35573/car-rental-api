@@ -4,11 +4,8 @@ async function getData(city, producer, model, transmission, id) {
     try {
         const URL = `https://www.revv.co.in/open/${city}/${producer}/${model}${transmission}/stock/confirm?c_id=${id}`;
 
-<<<<<<< HEAD
         const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] });
-=======
-        const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
->>>>>>> 7c86c75518be2a95c26c8c9cf0826dc7eaf11a98
+
         const page = await browser.newPage();
         let result;
         await page.setViewport({ width: 1200, height: 800 })
