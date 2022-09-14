@@ -23,7 +23,7 @@ async function getData(city) {
                     result.push(data);
                 }
             } catch (e) {
-                console.log(e);
+                //console.log(e);
             }
         })
 
