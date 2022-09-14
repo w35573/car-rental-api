@@ -22,7 +22,7 @@ async function getData(city, producer, model, transmission, id) {
                 }
 
             } catch (e) {
-                console.log(e);
+                //console.log(e);
             }
         })
 
@@ -33,7 +33,7 @@ async function getData(city, producer, model, transmission, id) {
         return result;
 
     } catch (error) {
-        console.log(error);
+        throw error;
     }
 }
 exports.getData = getData;
