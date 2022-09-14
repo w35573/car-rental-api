@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 });
 
 //GET car info by city
-app.get('/:city', async (req, res) => {
+app.get('/car/:city', async (req, res) => {
     const { city } = req.params;
     try {
         const data = await carInfo.getData(city);
@@ -26,7 +26,7 @@ app.get('/:city', async (req, res) => {
 });
 
 //GET individual car info by city and car id
-app.get('/:city/:producer/:model/:transmission/:id', async (req, res) => {
+app.get('/car/:city/:producer/:model/:transmission/:id', async (req, res) => {
     const { city, producer, model, transmission, id } = req.params;
     try {
         const data = await indCarInfo.getData(city, producer, model, transmission, id);
@@ -37,7 +37,7 @@ app.get('/:city/:producer/:model/:transmission/:id', async (req, res) => {
 });
 
 //GET similar cars
-app.get('/:id/:cityId', async (req, res) => {
+app.get('/car/:id/:cityId', async (req, res) => {
     const { id, cityId } = req.params;
     try {
         const data = await similarCarInfo.getData(id, cityId);
