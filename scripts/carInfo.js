@@ -4,7 +4,10 @@ async function getData(city) {
     try {
         const URL = `https://www.revv.co.in/open/${city}/stock/cars_pricing`;
 
-        const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
+        const browser = await puppeteer.launch({
+            headless: true,
+            args: ['--no-sandbox']
+        });
         const page = await browser.newPage();
         const result = [];
         await page.setViewport({ width: 1200, height: 800 })
