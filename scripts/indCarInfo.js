@@ -22,7 +22,7 @@ async function getData(city, producer, model, transmission, id) {
                 }
 
             } catch (e) {
-                //console.log(e);
+                console.log(e);
             }
         })
 
