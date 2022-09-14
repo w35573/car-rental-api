@@ -5,8 +5,7 @@ async function getData(city) {
         const URL = `https://www.revv.co.in/open/${city}/stock/cars_pricing`;
 
         const browser = await puppeteer.launch({
-            headless: true,
-            args: ['--no-sandbox']
+            args: ['--no-sandbox', '--disable-setuid-sandbox']
         });
         const page = await browser.newPage();
         const result = [];
