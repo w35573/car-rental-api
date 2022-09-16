@@ -23,24 +23,13 @@ async function getData(city) {
                 if (response.url() == "https://admin.revv.co.in/api/v1/lt/car/pricing/get") {
                     const data = await response.json();
                     result.push(data);
-                    console.log("hello")
                 }
             } catch (e) {
                 console.log(e);
             }
+        });
 
-            // console.log(response.url())
-        })
-
-        // const [res] = await Promise.all([
-        //     page.waitForResponse(res => res.url() === "https://admin.revv.co.in/api/v1/lt/car/pricing/get"),
-        //     page.goto(URL, { waitUntil: "domcontentloaded", timeout: 90000}),
-        // ]);
-
-
-        // console.log(await res.json());
-
-        await page.goto(URL, { waitUntil: 'networkidle0' });
+        await page.goto(URL, { waitUntil: 'networkidle2' });
 
         await browser.close();
 
