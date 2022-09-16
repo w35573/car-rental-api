@@ -28,7 +28,7 @@ async function getData(city) {
                 console.log(e);
             }
 
-            console.log("hi")
+            console.log(response.url())
         })
 
         await page.goto(URL);
