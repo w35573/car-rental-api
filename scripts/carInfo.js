@@ -14,6 +14,7 @@ async function getData(city) {
         await page.setRequestInterception(true)
 
         page.on('request', (request) => {
+            console.log(request.url());
             request.continue()
         })
 
@@ -28,10 +29,10 @@ async function getData(city) {
                 console.log(e);
             }
 
-            console.log(response.url())
+            // console.log(response.url())
         })
 
-        await page.goto(URL, { waitUntil: "domcontentloaded" });
+        await page.goto(URL);
 
         await browser.close();
 
