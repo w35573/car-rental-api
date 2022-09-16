@@ -4,7 +4,10 @@ async function getData(city, producer, model, transmission, id) {
     try {
         const URL = `https://www.revv.co.in/open/${city}/${producer}/${model}${transmission}/stock/confirm?c_id=${id}`;
 
-        const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+        const browser = await puppeteer.launch({
+            headless: true,
+            args: ['--no-sandbox', '--disable-setuid-sandbox']
+        });
 
         const page = await browser.newPage();
         let result;
@@ -26,7 +29,7 @@ async function getData(city, producer, model, transmission, id) {
             }
         })
 
-        await page.goto(URL, { waitUntil: 'load', timeout: 0 });
+        await page.goto(URL, { waitUntil: 'networkidle2' });
 
         await browser.close();
 
