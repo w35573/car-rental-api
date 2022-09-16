@@ -31,7 +31,7 @@ async function getData(city) {
             console.log(response.url())
         })
 
-        await page.goto(URL);
+        await page.goto(URL, { waitUntil: "domcontentloaded" });
 
         await browser.close();
 
