@@ -21,10 +21,13 @@ async function getData(city) {
                 if (response.url() == "https://admin.revv.co.in/api/v1/lt/car/pricing/get") {
                     const data = await response.json();
                     result.push(data);
+                    console.log("hello")
                 }
             } catch (e) {
                 console.log(e);
             }
+
+            console.log("hi")
         })
 
         await page.goto(URL);
