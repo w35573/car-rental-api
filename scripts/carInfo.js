@@ -51,6 +51,7 @@ async function getData(city) {
 
         await page.waitForNavigation({
             waitUntil: 'networkidle0',
+            timeout: 5000
         });
 
         await browser.close();
