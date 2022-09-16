@@ -18,45 +18,40 @@ async function getData(city) {
             request.continue()
         })
 
-        page.on('response', async (response) => {
-            try {
-                if (response.url() == "https://admin.revv.co.in/api/v1/lt/car/pricing/get") {
-                    const data = await response.json();
-                    result.push(data);
-                    console.log("hello")
-                }
-            } catch (e) {
-                console.log(e);
-            }
+        // page.on('response', async (response) => {
+        //     try {
+        //         if (response.url() == "https://admin.revv.co.in/api/v1/lt/car/pricing/get") {
+        //             const data = await response.json();
+        //             result.push(data);
+        //             console.log("hello")
+        //         }
+        //     } catch (e) {
+        //         console.log(e);
+        //     }
 
-            // console.log(response.url())
-        })
+        //     // console.log(response.url())
+        // })
 
-        // const waitForResponse = (page, url) => {
-        //     return new Promise(resolve => {
-        //         page.on("response", function callback(response) {
-        //             if (response.url() === url) {
-        //                 resolve(response);
-        //                 page.removeListener("response", callback)
-        //             }
-        //         })
-        //     })
-        // };
+        const waitForResponse = (page, url) => {
+            return new Promise(resolve => {
+                page.on("response", function callback(response) {
+                    if (response.url() === url) {
+                        resolve(response);
+                        page.removeListener("response", callback)
+                    }
+                })
+            })
+        };
 
-        // const res = await waitForResponse(page, "https://admin.revv.co.in/api/v1/lt/car/pricing/get");
+        const res = await waitForResponse(page, "https://admin.revv.co.in/api/v1/lt/car/pricing/get");
 
 
 
-        await page.goto(URL, { waitUntil: 'networkidle0' });
-
-        await page.waitForNavigation({
-            waitUntil: 'networkidle0',
-            timeout: 5000
-        });
+        await page.goto(URL);
 
         await browser.close();
 
-        return result[0];
+        return res;
 
     } catch (error) {
         throw error;
