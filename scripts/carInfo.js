@@ -32,7 +32,26 @@ async function getData(city) {
             // console.log(response.url())
         })
 
-        await page.goto(URL);
+        // const waitForResponse = (page, url) => {
+        //     return new Promise(resolve => {
+        //         page.on("response", function callback(response) {
+        //             if (response.url() === url) {
+        //                 resolve(response);
+        //                 page.removeListener("response", callback)
+        //             }
+        //         })
+        //     })
+        // };
+
+        // const res = await waitForResponse(page, "https://admin.revv.co.in/api/v1/lt/car/pricing/get");
+
+
+
+        await page.goto(URL, { waitUntil: 'networkidle0' });
+
+        await page.waitForNavigation({
+            waitUntil: 'networkidle0',
+        });
 
         await browser.close();
 
