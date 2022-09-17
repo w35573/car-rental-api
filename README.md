@@ -1,6 +1,7 @@
 ## 📖 Index
  - 📑 [About the project](#about-the-project)
  - ➡ [Endpoints](#endpoints)
+ - ➡️ [Alternate URL](#alternate)
 
 ___
 
@@ -16,4 +17,9 @@ ___
 
 > docs: https://vroom-car-rental-api.herokuapp.com/docs
 ---
+___
+
+## ➡️ Alternate URL <a name="alternate"></a>
+
+Deployed on [Railway](https://vroom.up.railway.app/docs)
 
