@@ -1,4 +1,6 @@
 const express = require('express');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./data/swagger.json');
 const carInfo = require('./scripts/carInfo');
 const indCarInfo = require('./scripts/indCarInfo');
 const similarCarInfo = require('./scripts/similarCarInfo');
@@ -8,9 +10,9 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-//home route
+//GET home page
 app.get('/', (req, res) => {
-    res.send('This is car info API');
+    res.send('Welcome to the Car API');
 });
 
 //GET car info by city
@@ -46,6 +48,9 @@ app.get('/car/:id/:cityId', async (req, res) => {
         console.log(err);
     }
 });
+
+//middleware for swagger
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

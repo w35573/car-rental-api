@@ -1,0 +1,199 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Vroom Car Rental API",
+    "description": "`https://vroom-car-rental-api.herokuapp.com/` can be used as an API for fetching information about rental cars using different parameters\n\nSome useful links:\n- [Vroom API repo link](https://github.com/w35573/car-rental-api)\n- [Data fetched from](https://www.revv.co.in/)\n\n`Authentication:`\n  No authentication is required to use the `vroom-car-rental-api.herokuapp.com` API. Enjoy :)\n  \n`Servicable Cities:`\n  bangalore, hyderabad, chennai, mumbai, delhi-ncr, pune, kolkata, ahmedabad, bhubaneswar, chandigarh, coimbatore, jaipur, kochi, mangalore, mysore, nagpur, tirupati, trivandrum, vijayawada, vizag\n  ",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "prathamesh.redij@spit.ac.in"
+    },
+    "license": {
+      "name": "MIT License",
+      "url": "https://github.com/w35573/car-rental-api/blob/main/LICENSE"
+    },
+    "version": "0.1"
+  },
+  "paths": {
+    "/car/{cityName}": {
+      "get": {
+        "tags": [
+          "Car"
+        ],
+        "summary": "Find cars information by location",
+        "description": "Returns list of cars by their specifications",
+        "operationId": "getCarByCityName",
+        "parameters": [
+          {
+            "name": "cityName",
+            "in": "path",
+            "description": "city name to return",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid city name supplied"
+          },
+          "404": {
+            "description": "City not found"
+          }
+        }
+      }
+    },
+    "/car/{cityName}/{producer}/{model}/{transmission}/{id}": {
+      "get": {
+        "tags": [
+          "Car"
+        ],
+        "summary": "Find cars information by location",
+        "description": "Returns list of cars by their specifications",
+        "operationId": "getCarInfoByModel",
+        "parameters": [
+          {
+            "name": "cityName",
+            "in": "path",
+            "description": "city name to return",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "producer",
+            "in": "path",
+            "description": "producer name eg., mahindra",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "model",
+            "in": "path",
+            "description": "model name eg., scropio",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "transmission",
+            "in": "path",
+            "description": "transmission mode eg., manual",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the car",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid city name supplied"
+          },
+          "404": {
+            "description": "City not found"
+          }
+        }
+      }
+    },
+    "/car/{id}/{cityID}": {
+      "get": {
+        "tags": [
+          "Car"
+        ],
+        "summary": "Find cars information by location",
+        "description": "Returns list of cars by their specifications",
+        "operationId": "getCarInfoByID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the car",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cityID",
+            "in": "path",
+            "description": "ID of the city",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid city name supplied"
+          },
+          "404": {
+            "description": "City not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ApiResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
