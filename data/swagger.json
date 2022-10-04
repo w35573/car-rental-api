@@ -16,9 +16,7 @@
   "paths": {
     "/car/{cityName}": {
       "get": {
-        "tags": [
-          "Car"
-        ],
+        "tags": ["Car"],
         "summary": "Find cars information by location",
         "description": "Returns list of cars by their specifications",
         "operationId": "getCarByCityName",
@@ -53,11 +51,55 @@
         }
       }
     },
+    "/car/{id}/{cityID}": {
+      "get": {
+        "tags": ["Car"],
+        "summary": "Find cars information by location",
+        "description": "Returns list of cars by their specifications",
+        "operationId": "getCarInfoByID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the car",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cityID",
+            "in": "path",
+            "description": "ID of the city",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid city name supplied"
+          },
+          "404": {
+            "description": "City not found"
+          }
+        }
+      }
+    },
     "/car/{cityName}/{producer}/{model}/{transmission}/{id}": {
       "get": {
-        "tags": [
-          "Car"
-        ],
+        "tags": ["Car"],
         "summary": "Find cars information by location",
         "description": "Returns list of cars by their specifications",
         "operationId": "getCarInfoByModel",
@@ -128,28 +170,53 @@
         }
       }
     },
-    "/car/{id}/{cityID}": {
+    "/str/{startDate}/{endDate}/{long}/{lat}/{location}": {
       "get": {
-        "tags": [
-          "Car"
-        ],
-        "summary": "Find cars information by location",
-        "description": "Returns list of cars by their specifications",
-        "operationId": "getCarInfoByID",
+        "tags": ["Car"],
+        "summary": "Find cars for short term rentals",
+        "description": "Returns list of cars by their specifications\n\nAllowed timings: 0:00 4:00 4:30 5:00 5:30 6:00 6:30 7:00 7:30 8:00 8:30 9:00 9:30 10:00 10:30 11:00 11:30 12:00 12:30 13:00 13:30 14:00 14:30 15:00 15:30 16:00 16:30 17:00 17:30 18:00 18:30 19:00 19:30 20:00 20:30 21:00 21:30 22:00 22:30 23:00 23:30",
+        "operationId": "getCarInfoOfStr",
         "parameters": [
           {
-            "name": "id",
+            "name": "startDate",
             "in": "path",
-            "description": "ID of the car",
+            "description": "startDate in ISO:8061 format",
             "required": true,
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "cityID",
+            "name": "endDate",
             "in": "path",
-            "description": "ID of the city",
+            "description": "endDate in ISO:8061 format",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "long",
+            "in": "path",
+            "description": "longitude",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lat",
+            "in": "path",
+            "description": "latitude",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "location",
+            "in": "path",
+            "description": "city of rental",
             "required": true,
             "schema": {
               "type": "string"
@@ -168,10 +235,10 @@
             }
           },
           "400": {
-            "description": "Invalid city name supplied"
+            "description": "Invalid data supplied"
           },
           "404": {
-            "description": "City not found"
+            "description": "Data not found"
           }
         }
       }
